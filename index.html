@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Unity Web Player | Match2Apple</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #111; /* 여백 배경색 (어두운 회색) */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      #unity-canvas {
+        /* ⭐️ 마법의 비율 계산식! 
+           object-fit을 쓰지 않고 캔버스의 '진짜 크기'를 9:16으로 강제합니다.
+           이제 화면도 잘리지 않고, 버튼 클릭 위치도 완벽하게 일치합니다. */
+        width: 100%;
+        height: 100%;
+        max-width: calc(100vh * (9 / 16));
+        max-height: calc(100vw * (16 / 9));
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="unity-canvas" tabindex="-1"></canvas>
+
+
+    <script src="Build/1b193261c1726235b137dc56da696935.loader.js"></script>
+    <script>
+      createUnityInstance(document.querySelector("#unity-canvas"), {
+        arguments: [],
+        dataUrl: "Build/292ef595d5c7ddecf97011317cfd0f35.data.unityweb",
+        frameworkUrl: "Build/31b513dceda1858e81c8bfc94312146a.framework.js.unityweb",
+        codeUrl: "Build/8371862bd7ba1b111779bf0b78c28182.wasm.unityweb",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "WBTGames",
+        productName: "Match2Apple",
+        productVersion: "1.2.0",
+      }).then((unityInstance) => {
+      }).catch((message) => {
+        alert(message);
+      });
+    </script>
+  </body>
+</html>
