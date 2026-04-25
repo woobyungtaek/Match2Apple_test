@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Callback</title>
+</head>
+<body>
+    <script>
+        // 1. 구글 인증이 끝난 후 Supabase가 주소 뒤에 붙여준 토큰(#access_token=...)을 가져옵니다.
+        const hash = window.location.hash;
+
+        // 2. 이 창을 열었던 부모 창(게임이 실행 중인 창)이 존재하는지 확인합니다.
+        if (hash && window.opener) 
+        {
+            // 3. 부모 창으로 토큰 데이터를 전송합니다.
+            window.opener.postMessage(hash, "*");
+            
+            // 4. 임무가 끝났으므로 팝업창을 스스로 닫습니다.
+            window.close();
+        }
+        else 
+        {
+            document.write("인증 정보를 게임으로 전달할 수 없습니다.");
+        }
+    </script>
+</body>
+</html>
